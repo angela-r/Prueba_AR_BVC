@@ -1,0 +1,19 @@
+{% with messages = get_flashed_messages()  %}
+      {% if messages %}
+      {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+
+
+<form action="/add_campanign", method="POST">
+    <input type="text" name="name" placeholder="Fullname">
+    <input type="text" name="amount" placeholder="Amount">
+    <input type="text" name="requested_Amount" placeholder="Resquested_Amount">
+    <input type="text" name="admin_Rate" placeholder="Admin_Rate">
+    <button type="submit"> 
+        Save
+    </button>
+</form>
+
