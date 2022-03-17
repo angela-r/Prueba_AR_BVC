@@ -1,5 +1,3 @@
-from asyncio.windows_events import NULL
-from calendar import weekheader
 from flask import Flask, request, json
 from flask_mysqldb import MySQL
 
