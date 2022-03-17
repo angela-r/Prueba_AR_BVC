@@ -13,10 +13,6 @@ app.config['MYSQL_PASSWORD'] = 'root'
 app.config['MYSQL_DB'] = 'a2censo'
 mysql= MySQL(app)
 
-# Settings
-
-app.secret_key = 'mysecretkey'
-
 
 @app.route ('/list_campanign', methods=['GET'])
 def list_campanign():
@@ -43,8 +39,6 @@ def list_campanign():
     if requested_Amount is not None:
         select +=  ',requested_Amount'
         where += ' and requested_Amount = '+str(requested_Amount)
-    #if where != '':
-        #query += ' where ' + where
     if order is not None:
         if amount is not None or requested_Amount is not None:
             query += ' order by '+select+' '+ order
@@ -52,8 +46,6 @@ def list_campanign():
     cur.execute(query)
     data = cur.fetchall()
     cur.close()
-    #return render_template('index.html', contacts = data)
-    #flash('Campaña agregada satisfactoriamente')
     response = app.response_class(
             response=json.dumps(data),
             status=200,
@@ -75,7 +67,6 @@ def add_campanign():
         print(query)
         cur.execute(query)
         mysql.connection.commit()
-        #flash('Campaña agregada satisfactoriamente')
         response = app.response_class(
             response=json.dumps({'msn':'creado'}),
             status=200,
@@ -85,4 +76,4 @@ def add_campanign():
 
 
 if __name__ == '__main__':
-    app.run(port = 3000, debug = True)
+    app.run(port = 5000, debug = True)
